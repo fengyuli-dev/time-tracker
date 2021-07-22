@@ -4,6 +4,17 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+Make sure you have [Node.js](https://nodejs.org/en/) installed in your environment.
+
+Run the following commands in terminal:
+
+   ```shell
+   // Install react, react-dom, antd, and other necessary packages.
+   npm i
+   // Install webpack and babel to compile your JSX code.
+   npm i -D
+   ```
+
 In the project directory, you can run:
 
 ### `npm start`
