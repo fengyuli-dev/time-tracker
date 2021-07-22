@@ -1,9 +1,9 @@
 import './App.css';
-import DenseAppBar from './components/AppBar';
+import SimpleBottomNavigation from './components/navigationBar';
 
 function App() {
   return (
-    <DenseAppBar />
+    <SimpleBottomNavigation />
   );
 }
 
