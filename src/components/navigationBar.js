@@ -5,6 +5,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import "./navigationBar.css"
 
 const useStyles = makeStyles({
   root: {
@@ -17,7 +18,7 @@ export default function SimpleBottomNavigation() {
   const [value, setValue] = React.useState(0);
 
   return (
-    <BottomNavigation
+    <BottomNavigation className="navigation-bar"
       value={value}
       onChange={(event, newValue) => {
         setValue(newValue);
