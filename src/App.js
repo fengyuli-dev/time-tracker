@@ -1,9 +1,13 @@
 import './App.css';
 import SimpleBottomNavigation from './components/navigationBar';
+import ActivitySelector from './components/activitySelector';
 
 function App() {
   return (
-    <SimpleBottomNavigation />
+    <div>
+      <ActivitySelector />
+      <SimpleBottomNavigation />
+    </div>
   );
 }
 
