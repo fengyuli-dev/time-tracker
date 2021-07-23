@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import "./clock.css"
 
 let runner;
-
-const useStyles = makeStyles({
-    root: {
-        width: '100%',
-        maxWidth: 500,
-    },
-});
 
 class Clock extends Component {
     constructor(props) {

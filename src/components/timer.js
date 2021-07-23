@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import TimerDisplay from './timerDisplay';
 import IconButton from '@material-ui/core/IconButton';
 import StopIcon from '@material-ui/icons/Stop';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
@@ -26,6 +27,7 @@ export default function Timer() {
             <IconButton aria-label="start" onClick={handleClick}>
                 {iconStyle(status)}
             </IconButton>
+            <TimerDisplay status={status} />
         </div>
     );
 
