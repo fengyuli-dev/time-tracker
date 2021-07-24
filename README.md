@@ -9,10 +9,8 @@ Make sure you have [Node.js](https://nodejs.org/en/) installed in your environme
 Run the following commands in terminal:
 
    ```shell
-   // Install react, react-dom, antd, and other necessary packages.
+   // Install react, react-dom, material ui, and other necessary packages.
    npm i
-   // Install webpack and babel to compile your JSX code.
-   npm i -D
    ```
 
 In the project directory, you can run:
