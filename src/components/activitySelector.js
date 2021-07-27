@@ -27,15 +27,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ActivitySelector() {
     const classes = useStyles();
-    const [value, setValue] = React.useState('');
-    const [age, setAge] = React.useState('');
+    const [description, setDescription] = React.useState('');
+    const [tag, setTag] = React.useState('');
 
     const handleTextChange = (event) => {
-        setValue(event.target.value);
+        setDescription(event.target.value);
     };
 
     const handleSelectChange = (event) => {
-        setAge(event.target.value);
+        setTag(event.target.value);
     };
 
     return (
@@ -45,7 +45,7 @@ export default function ActivitySelector() {
                 label="Description"
                 multiline
                 maxRows={4}
-                value={value}
+                value={description}
                 onChange={handleTextChange}
             />
             <FormControl className={classes.formControl}>
@@ -53,7 +53,7 @@ export default function ActivitySelector() {
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={age}
+                    value={tag}
                     onChange={handleSelectChange}
                 >
                     <MenuItem value={10}>Ten</MenuItem>
