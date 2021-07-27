@@ -25,11 +25,30 @@ export default function Timer() {
     const [timer, setTimer] = useState(0);
     const [description, setDescription] = useState('');
     const [tag, setTag] = useState('');
+    let date, startTime, endTime, duration;
 
     function handleClick() {
+        const currentdate = new Date();
         if (status) {
             setStatus(false);
-            console.log(description, tag, timer)
+            
+            // Get infos about time and duration
+            date = currentdate.getMonth() + "/"
+                + (currentdate.getDate() + 1) + "/"
+                + currentdate.getFullYear()
+            endTime = currentdate.getHours() + ":"
+                + currentdate.getMinutes()
+            startTime = new Date(currentdate);
+            duration = Math.floor(timer / 60);
+            startTime.setMinutes(currentdate.getMinutes() - duration)
+            startTime = startTime.getHours() + ":"
+                + startTime.getMinutes()
+
+            console.log(description, tag, date, startTime, endTime, duration)
+
+            submitToDatabase();
+
+            resetAll();
         }
         else {
             setStatus(true);
@@ -48,6 +67,19 @@ export default function Timer() {
         }
         return () => clearInterval(interval);
     }, [status, timer]);
+
+    function resetAll() {
+        date = "";
+        startTime = "";
+        endTime = "";
+        duration = 0;
+        setDescription("");
+        setTag("");
+    }
+
+    function submitToDatabase() {
+
+    }
 
     return (
         <div className={classes.root}>
