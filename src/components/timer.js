@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TimerDisplay from './timerDisplay';
 import IconButton from '@material-ui/core/IconButton';
@@ -21,13 +21,16 @@ function iconStyle(status) {
 export default function Timer() {
     const classes = useStyles();
     const [status, setStatus] = useState(false);
+    const [timer, setTimer] = useState(3599);
+
+    
 
     return (
         <div className={classes.root}>
             <IconButton aria-label="start" onClick={handleClick}>
                 {iconStyle(status)}
             </IconButton>
-            <TimerDisplay status={status} />
+            <TimerDisplay status={status} timer={timer} />
         </div>
     );
 
