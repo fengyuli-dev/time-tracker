@@ -21,9 +21,29 @@ function iconStyle(status) {
 export default function Timer() {
     const classes = useStyles();
     const [status, setStatus] = useState(false);
-    const [timer, setTimer] = useState(3599);
+    const [timer, setTimer] = useState(0);
 
-    
+    function handleClick() {
+        if (status) {
+            setStatus(false);
+        }
+        else {
+            setStatus(true);
+        }
+    }
+
+    useEffect(() => {
+        let interval = null;
+        if (status) {
+            interval = setInterval(() => {
+                setTimer(timer => timer + 1);
+            }, 1000);
+        } else {
+            clearInterval(interval);
+            setTimer(0)
+        }
+        return () => clearInterval(interval);
+    }, [status, timer]);
 
     return (
         <div className={classes.root}>
@@ -33,13 +53,4 @@ export default function Timer() {
             <TimerDisplay status={status} timer={timer} />
         </div>
     );
-
-    function handleClick() {
-        if (status === true) {
-            setStatus(false);
-        }
-        else {
-            setStatus(true);
-        }
-    }
 }
