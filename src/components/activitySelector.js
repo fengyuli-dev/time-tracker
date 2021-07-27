@@ -19,16 +19,18 @@ const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
-      },
-      selectEmpty: {
+    },
+    selectEmpty: {
         marginTop: theme.spacing(2),
-      },
+    },
 }));
 
-export default function ActivitySelector() {
+export default function ActivitySelector(props) {
     const classes = useStyles();
-    const [description, setDescription] = React.useState('');
-    const [tag, setTag] = React.useState('');
+    const description = props.description;
+    const tag = props.tag;
+    const setDescription= props.setDescription;
+    const setTag = props.setTag;
 
     const handleTextChange = (event) => {
         setDescription(event.target.value);

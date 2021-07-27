@@ -15,7 +15,6 @@ function App() {
       <SimpleBottomNavigation />
       <Switch>
         <Route exact path="/">
-          <ActivitySelector />
           <Timer />
           <Clock />
         </Route>
