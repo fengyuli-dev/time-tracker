@@ -1,7 +1,6 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 import "./timerDisplay.css"
-import { HourglassEmpty } from '@material-ui/icons';
 
 export default function TimerDisplay(props) {
 

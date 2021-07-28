@@ -31,20 +31,20 @@ export default function Timer() {
         const currentdate = new Date();
         if (status) {
             setStatus(false);
-            
+
             // Get infos about time and duration
             date = currentdate.getMonth() + "/"
                 + (currentdate.getDate() + 1) + "/"
                 + currentdate.getFullYear()
             endTime = currentdate.getHours() + ":"
-                + currentdate.getMinutes()
+                + currentdate.getMinutes();
             startTime = new Date(currentdate);
             duration = Math.floor(timer / 60);
-            startTime.setMinutes(currentdate.getMinutes() - duration)
+            startTime.setMinutes(currentdate.getMinutes() - duration);
             startTime = startTime.getHours() + ":"
-                + startTime.getMinutes()
+                + startTime.getMinutes();
 
-            console.log(description, tag, date, startTime, endTime, duration)
+            console.log(description, tag, date, startTime, endTime, duration);
 
             submitToDatabase();
 
@@ -63,7 +63,7 @@ export default function Timer() {
             }, 1000);
         } else {
             clearInterval(interval);
-            setTimer(0)
+            setTimer(0);
         }
         return () => clearInterval(interval);
     }, [status, timer]);

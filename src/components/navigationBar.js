@@ -6,12 +6,7 @@ import RestoreIcon from '@material-ui/icons/Restore';
 import WorkIcon from '@material-ui/icons/Work';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import "./navigationBar.css"
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -25,18 +20,18 @@ export default function SimpleBottomNavigation() {
 
   return (
 
-      <BottomNavigation className="navigation-bar"
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-        showLabels
-        className={classes.root}
-      >
-        <Link to="/"><BottomNavigationAction label="Timer" icon={<RestoreIcon />} /></Link>
-        <Link to="/activities"><BottomNavigationAction label="Activities" icon={<WorkIcon />} /></Link>
-        <Link to="/report"><BottomNavigationAction label="Report" icon={<AssessmentIcon />} /></Link>
-      </BottomNavigation>
+    <BottomNavigation className="navigation-bar"
+      value={value}
+      onChange={(event, newValue) => {
+        setValue(newValue);
+      }}
+      showLabels
+      className={classes.root}
+    >
+      <Link to="/"><BottomNavigationAction label="Timer" icon={<RestoreIcon />} /></Link>
+      <Link to="/activities"><BottomNavigationAction label="Activities" icon={<WorkIcon />} /></Link>
+      <Link to="/report"><BottomNavigationAction label="Report" icon={<AssessmentIcon />} /></Link>
+    </BottomNavigation>
 
   );
 }

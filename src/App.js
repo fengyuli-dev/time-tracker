@@ -1,13 +1,8 @@
 import './App.css';
 import SimpleBottomNavigation from './components/navigationBar';
-import ActivitySelector from './components/activitySelector';
 import Timer from './components/timer';
 import Clock from './components/clock';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (
