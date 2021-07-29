@@ -1,5 +1,6 @@
 // Users first select a type of activity, then input a brief description
 // Then they start the timer
+// Implemented by Fengyu
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';

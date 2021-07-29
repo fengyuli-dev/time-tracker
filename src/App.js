@@ -3,7 +3,7 @@ import SimpleBottomNavigation from './components/navigationBar';
 import Timer from './components/timer';
 import Clock from './components/clock';
 import { Switch, Route } from "react-router-dom";
-import InteractiveList from './components/ActivityList';
+import InteractiveList from './components/activityList.js';
 
 function App() {
   return (
