@@ -1,11 +1,11 @@
 .iconBut {
   position: absolute;
-  top: 35%;
+  top: 40%;
   left: 40%;
   border-bottom-right-radius: 30%;
   border-top-right-radius: 30%;
   background: none;
   size: 2rem;
   border: 0rem;
-  transform: translate(-40%, -35%);
+  transform: translate(-40%, -40%);
 }

@@ -3,12 +3,13 @@ import SimpleBottomNavigation from './components/navigationBar';
 import Timer from './components/timer';
 import Clock from './components/clock';
 import { Switch, Route } from "react-router-dom";
+import InteractiveList from './components/ActivityList';
 
 function App() {
   return (
     <div>
       <div class='heading'>
-      <h1>InitialView Task Tracker</h1>
+        <h1>InitialView Task Tracker</h1>
       </div>
       <SimpleBottomNavigation />
       <Switch>
@@ -18,7 +19,7 @@ function App() {
         </Route>
 
         <Route path="/activities">
-          <p>2</p>
+          <InteractiveList />
         </Route>
 
         <Route path="/report">

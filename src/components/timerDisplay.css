@@ -1,8 +1,8 @@
 h2 {
   position: absolute;
-  top: 30%;
-  left: 60%;
-  transform: translate(-60%, -30%);
+  top: 40%;
+  left: 55%;
+  transform: translate(-55%, -40%);
 }
 
 .timerButton {
@@ -10,6 +10,6 @@ h2 {
   border-radius: 50%;
   border: 1rem solid;
   border-color: rgb(223, 152, 20);
-  padding: 5rem 3rem;
+  padding: 4rem 2rem;
   font-size: 2rem;
 }
