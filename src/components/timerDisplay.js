@@ -32,8 +32,10 @@ export default function TimerDisplay(props) {
     }
 
     return (
-        <Typography variant="h2" gutterBottom className="clock">
+        <Typography variant="h2" gutterBottom className="timer">
+            <button class='timerButton'>
             <span>{formatTime(props.timer)}</span>
+            </button>
         </Typography>
     )
 }

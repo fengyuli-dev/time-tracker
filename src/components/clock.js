@@ -30,7 +30,9 @@ class Clock extends Component {
     render() {
         return (
             <Typography variant="h2" gutterBottom className="clock">
+                <button class='clockButton'>
                 <span>{this.state.time}</span>
+                </button>
             </Typography>
         );
     }

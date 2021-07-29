@@ -7,6 +7,9 @@ import { Switch, Route } from "react-router-dom";
 function App() {
   return (
     <div>
+      <div class='heading'>
+      <h1>InitialView Task Tracker</h1>
+      </div>
       <SimpleBottomNavigation />
       <Switch>
         <Route exact path="/">

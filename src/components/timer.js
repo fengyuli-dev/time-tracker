@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import StopIcon from '@material-ui/icons/Stop';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ActivitySelector from './activitySelector';
+import "./timer.css";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -84,9 +85,11 @@ export default function Timer() {
     return (
         <div className={classes.root}>
             <ActivitySelector description={description} tag={tag} setDescription={setDescription} setTag={setTag} />
+            <button class='iconBut'>
             <IconButton aria-label="start" onClick={handleClick}>
                 {iconStyle(status)}
             </IconButton>
+            </button>
             <TimerDisplay status={status} timer={timer} />
         </div>
     );
