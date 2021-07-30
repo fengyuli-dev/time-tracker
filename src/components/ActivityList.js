@@ -28,22 +28,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InteractiveList() {
     const classes = useStyles();
-    // What is dense, primary, and secondary?
-    const [dense, setDense] = React.useState(false);
-    const [secondary, setSecondary] = React.useState(false);
+    const [activity, setActivity] = useState([])
 
-    //let tagList = ["Cooking", "Working", "Playing", "NETFLIX"]
+    function delActivity(e) {
+    }
 
+    function addActivity(e) {
 
-    const [activity, setActivity]=useState(["Cooking","Working","Playing"])
-
-    /*const addActivity=(newActivity)=>{
-        setActivity([...activity,{newActivity}])
-    }*/
-
-    const delActivity=(oldActivity)=>{
-        activity.splice(oldActivity,1)
-        setActivity([...activity])
     }
 
     return (
@@ -52,17 +43,15 @@ export default function InteractiveList() {
                 Activity List
             </Typography>
             <div class="TaskListDiv">
-                <List dense={dense}>
-                    {activity.map((value, index) => { //currently references TagList, created inside the function
+                <List dense={false}>
+                    {activity.map((value, index) => {
                         return (
                             <ListItem>
                                 <ListItemText
                                     primary={value}
-                                    secondary={secondary ? 'Secondary text' : null}
                                 />
                                 <ListItemSecondaryAction>
-                                    <IconButton edge="end" aria-label="delete" onClick={() => { 
-                                        delActivity(index)}}>
+                                    <IconButton edge="end" aria-label="delete" onClick={delActivity}>
                                         <DeleteIcon />
                                     </IconButton>
                                 </ListItemSecondaryAction>
@@ -71,9 +60,7 @@ export default function InteractiveList() {
                     })}
                 </List>
             </div>
-            <IconButton class="AddButton" aria-label="add" onClick={() => { 
-                //addActivity("New Activity")
-                alert('Add Activity') }}>
+            <IconButton class="AddButton" aria-label="add" onClick={addActivity}>
                 <AddIcon />
             </IconButton>
         </div>

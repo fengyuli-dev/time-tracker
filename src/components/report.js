@@ -55,7 +55,7 @@ export default function Report() {
                             <TableCell align="right">{row.tag}</TableCell>
                             <TableCell align="right">{row.startTime}</TableCell>
                             <TableCell align="right">{row.endTime}</TableCell>
-                            <TableCell align="right">{row.duration}</TableCell>
+                            <TableCell align="right">{row.duration + " minutes"}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
