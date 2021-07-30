@@ -1,6 +1,7 @@
 // Implemented by Raman
 
 import React from 'react';
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -31,7 +32,19 @@ export default function InteractiveList() {
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(false);
 
-    let tagList = ["Cooking", "Working", "Playing", "NETFLIX"]
+    //let tagList = ["Cooking", "Working", "Playing", "NETFLIX"]
+
+
+    const [activity, setActivity]=useState(["Cooking","Working","Playing"])
+
+    /*const addActivity=(newActivity)=>{
+        setActivity([...activity,{newActivity}])
+    }*/
+
+    const delActivity=(oldActivity)=>{
+        activity.splice(oldActivity,1)
+        setActivity([...activity])
+    }
 
     return (
         <div className={classes.root}>
@@ -40,7 +53,7 @@ export default function InteractiveList() {
             </Typography>
             <div class="TaskListDiv">
                 <List dense={dense}>
-                    {tagList.map((value, index) => { //currently references TagList, created inside the function
+                    {activity.map((value, index) => { //currently references TagList, created inside the function
                         return (
                             <ListItem>
                                 <ListItemText
@@ -48,7 +61,8 @@ export default function InteractiveList() {
                                     secondary={secondary ? 'Secondary text' : null}
                                 />
                                 <ListItemSecondaryAction>
-                                    <IconButton edge="end" aria-label="delete" onClick={() => { alert('Delete Activity') }}>
+                                    <IconButton edge="end" aria-label="delete" onClick={() => { 
+                                        delActivity(index)}}>
                                         <DeleteIcon />
                                     </IconButton>
                                 </ListItemSecondaryAction>
@@ -57,7 +71,9 @@ export default function InteractiveList() {
                     })}
                 </List>
             </div>
-            <IconButton class="AddButton" aria-label="add" onClick={() => { alert('Add Activity') }}>
+            <IconButton class="AddButton" aria-label="add" onClick={() => { 
+                //addActivity("New Activity")
+                alert('Add Activity') }}>
                 <AddIcon />
             </IconButton>
         </div>
