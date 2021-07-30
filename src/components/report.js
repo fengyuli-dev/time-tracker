@@ -25,7 +25,7 @@ export default function Report() {
         db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM LOGS', [], function (_, results) {
                 const len = results.rows.length;
-                for (let i = 0; i < len; i++) {
+                for (let i = len - 1; i >= len - 30 && i >= 0; i--) {
                     setRows(oldRows => [...oldRows, results.rows.item(i)])
                 }
             }, null);
@@ -37,25 +37,25 @@ export default function Report() {
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Tag</TableCell>
+                        <TableCell>Date</TableCell>
                         <TableCell align="right">Discription</TableCell>
+                        <TableCell align="right">Tag</TableCell>
                         <TableCell align="right">Start</TableCell>
                         <TableCell align="right">End</TableCell>
                         <TableCell align="right">Duration</TableCell>
-                        <TableCell align="right">Date</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {rows.map((row) => (
                         <TableRow key={row.name}>
                             <TableCell component="th" scope="row">
-                                {row.tag}
+                                {row.date}
                             </TableCell>
                             <TableCell align="right">{row.description}</TableCell>
+                            <TableCell align="right">{row.tag}</TableCell>
                             <TableCell align="right">{row.startTime}</TableCell>
                             <TableCell align="right">{row.endTime}</TableCell>
                             <TableCell align="right">{row.duration}</TableCell>
-                            <TableCell align="right">{row.date}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
