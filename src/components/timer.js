@@ -40,8 +40,8 @@ export default function Timer() {
             setStatus(false);
 
             // Get infos about time and duration
-            date = currentdate.getMonth() + "/"
-                + (currentdate.getDate() + 1) + "/"
+            date = (currentdate.getMonth() + 1) + "/"
+                + currentdate.getDate() + "/"
                 + currentdate.getFullYear()
             endTime = currentdate.getHours() + ":"
                 + currentdate.getMinutes();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,8 +7,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
-let rows = [];
 
 const db = openDatabase('TimeTracker', '1.0', 'main database', 2 * 1024 * 1024);
 
@@ -20,39 +18,44 @@ const useStyles = makeStyles({
 
 export default function Report() {
     const classes = useStyles();
+    const [rows, setRows] = useState([]);
 
-    db.transaction(function (tx) {
-        tx.executeSql('SELECT * FROM LOGS', [], function (_, results) {
-            const len = results.rows.length;
-            for (let i = 0; i < len; i++) {
-                console.log(results.rows.item(i));
-                rows.push(results.rows.item(i));
-            }
-        }, null);
-    });
+    useEffect(() => {
+        setRows([]);
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM LOGS', [], function (_, results) {
+                const len = results.rows.length;
+                for (let i = 0; i < len; i++) {
+                    setRows(oldRows => [...oldRows, results.rows.item(i)])
+                }
+            }, null);
+        });
+    }, []);
 
     return (
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Dessert (100g serving)</TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                        <TableCell>Tag</TableCell>
+                        <TableCell align="right">Discription</TableCell>
+                        <TableCell align="right">Start</TableCell>
+                        <TableCell align="right">End</TableCell>
+                        <TableCell align="right">Duration</TableCell>
+                        <TableCell align="right">Date</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {rows.map((row) => (
                         <TableRow key={row.name}>
                             <TableCell component="th" scope="row">
-                                {row.name}
+                                {row.tag}
                             </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">{row.carbs}</TableCell>
-                            <TableCell align="right">{row.protein}</TableCell>
+                            <TableCell align="right">{row.description}</TableCell>
+                            <TableCell align="right">{row.startTime}</TableCell>
+                            <TableCell align="right">{row.endTime}</TableCell>
+                            <TableCell align="right">{row.duration}</TableCell>
+                            <TableCell align="right">{row.date}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

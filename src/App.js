@@ -7,6 +7,7 @@ import InteractiveList from './components/activityList.js';
 import Report from './components/report';
 
 function App() {
+
   return (
     <div>
       <div class='heading'>
@@ -23,6 +24,7 @@ function App() {
         </Route>
 
         <Route path="/report">
+          
           <Report />
         </Route>
       </Switch>
