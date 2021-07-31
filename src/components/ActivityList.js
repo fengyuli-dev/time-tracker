@@ -41,10 +41,10 @@ export default function InteractiveList() {
     const [newItem, setNewItem] = useState("")
 
     function delActivity(e) {
-        console.log(e.target.primary);
+        const deleteItem = e.currentTarget.value;
         db.transaction(function (tx) {
-            tx.executeSql('DELETE FROM ACTIVITIES WHERE name="Hello"');
-            console.log(e.target);
+            console.log(deleteItem);
+            tx.executeSql('DELETE FROM ACTIVITIES WHERE name = ?', [deleteItem]);
         });
         refreshList();
     }
