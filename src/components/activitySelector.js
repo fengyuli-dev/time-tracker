@@ -2,7 +2,7 @@
 // Then they start the timer
 // Implemented by Fengyu
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -10,6 +10,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import "./activitySelector.css"
+
+const db = openDatabase('TimeTracker', '1.0', 'main database', 1024 * 1024 * 1024);
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,8 +33,20 @@ export default function ActivitySelector(props) {
     const classes = useStyles();
     const description = props.description;
     const tag = props.tag;
-    const setDescription= props.setDescription;
+    const setDescription = props.setDescription;
     const setTag = props.setTag;
+    const [tagList, setTagList] = useState([]);
+
+    useEffect(() => {
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM ACTIVITIES', [], function (tx, results) {
+                const len = results.rows.length;
+                for (let i = len - 1; i >= 0; i--) {
+                    setTagList(oldRows => [...oldRows, results.rows.item(i).name])
+                }
+            }, null);
+        });
+    }, []);
 
     const handleTextChange = (event) => {
         setDescription(event.target.value);
@@ -60,9 +74,9 @@ export default function ActivitySelector(props) {
                     value={tag}
                     onChange={handleSelectChange}
                 >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    {tagList.map((value) => {
+                        return (<MenuItem value={value}>{value}</MenuItem>)
+                    })}
                 </Select>
             </FormControl>
         </form>
