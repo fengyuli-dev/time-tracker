@@ -1,7 +1,7 @@
 // Implemented by Raman and Fengyu
 
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -37,8 +37,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InteractiveList() {
     const classes = useStyles();
-    const [activity, setActivity] = useState([])
-    const [newItem, setNewItem] = useState("")
+    const [activity, setActivity] = useState([]);
+    const [newItem, setNewItem] = useState("");
+    // Only on first render
+    useEffect(refreshList, [])
 
     function delActivity(e) {
         const deleteItem = e.currentTarget.value;
@@ -46,7 +48,7 @@ export default function InteractiveList() {
             console.log(deleteItem);
             tx.executeSql('DELETE FROM ACTIVITIES WHERE name = ?', [deleteItem]);
         });
-        refreshList();
+        refreshList()
     }
 
     function addActivity(e) {
@@ -57,7 +59,7 @@ export default function InteractiveList() {
             console.log(error)
         });
         setNewItem("");
-        refreshList();
+        refreshList()
     }
 
     const handleTextChange = (event) => {
