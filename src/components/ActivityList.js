@@ -1,4 +1,4 @@
-// Implemented by Raman
+// Implemented by Raman and Fengyu
 
 import React from 'react';
 import { useState } from 'react';
@@ -11,12 +11,21 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
+import TextField from '@material-ui/core/TextField';
 import "./activityList.css";
+
+const db = openDatabase('TimeTracker', '1.0', 'main database', 1024 * 1024 * 1024);
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         maxWidth: 752,
+        root: {
+            '& > *': {
+                margin: theme.spacing(1),
+                width: '25ch',
+            },
+        },
     },
     demo: {
         backgroundColor: theme.palette.background.paper,
@@ -29,12 +38,42 @@ const useStyles = makeStyles((theme) => ({
 export default function InteractiveList() {
     const classes = useStyles();
     const [activity, setActivity] = useState([])
+    const [newItem, setNewItem] = useState("")
 
     function delActivity(e) {
+        console.log(e.target.primary);
+        db.transaction(function (tx) {
+            tx.executeSql('DELETE FROM ACTIVITIES WHERE name="Hello"');
+            console.log(e.target);
+        });
+        refreshList();
     }
 
     function addActivity(e) {
+        e.preventDefault();
+        db.transaction(function (tx) {
+            tx.executeSql('INSERT INTO ACTIVITIES VALUES (?)', [newItem]);
+        }, function(error) {
+            console.log(error)
+        });
+        setNewItem("");
+        refreshList();
+    }
 
+    const handleTextChange = (event) => {
+        setNewItem(event.target.value);
+    };
+
+    function refreshList() {
+        setActivity([]);
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM ACTIVITIES', [], function (_, results) {
+                const len = results.rows.length;
+                for (let i = len - 1; i >= 0; i--) {
+                    setActivity(oldActivity => [...oldActivity, results.rows.item(i).name]);
+                }
+            }, null);
+        });
     }
 
     return (
@@ -51,7 +90,7 @@ export default function InteractiveList() {
                                     primary={value}
                                 />
                                 <ListItemSecondaryAction>
-                                    <IconButton edge="end" aria-label="delete" onClick={delActivity}>
+                                    <IconButton edge="end" aria-label="delete" onClick={delActivity} value={value}>
                                         <DeleteIcon />
                                     </IconButton>
                                 </ListItemSecondaryAction>
@@ -60,9 +99,12 @@ export default function InteractiveList() {
                     })}
                 </List>
             </div>
-            <IconButton class="AddButton" aria-label="add" onClick={addActivity}>
-                <AddIcon />
-            </IconButton>
+            <form className={classes.root} noValidate autoComplete="off" onSubmit={addActivity}>
+                <TextField id="standard-basic" label="New Item" value={newItem} onChange={handleTextChange} />
+                <IconButton type="submit" class="AddButton" aria-label="add">
+                    <AddIcon />
+                </IconButton>
+            </form>
         </div>
     );
 }

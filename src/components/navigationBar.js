@@ -20,7 +20,7 @@ export default function SimpleBottomNavigation() {
 
   return (
 
-    <BottomNavigation className="navigation-bar"
+    <BottomNavigation
       value={value}
       onChange={(event, newValue) => {
         setValue(newValue);

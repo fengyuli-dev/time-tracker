@@ -8,11 +8,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ActivitySelector from './activitySelector';
 import "./timer.css";
 
-const db = openDatabase('TimeTracker', '1.0', 'main database', 2 * 1024 * 1024);
-
-db.transaction(function (tx) {  
-    tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (description, tag, date, startTime, endTime, duration)');
- });
+const db = openDatabase('TimeTracker', '1.0', 'main database', 1024 * 1024 * 1024);
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -89,26 +85,26 @@ export default function Timer() {
     function submitToDatabase(log) {
         db.transaction(function (tx) {
             tx.executeSql('INSERT INTO LOGS VALUES (?, ?, ?, ?, ?, ?)', log);
-         });
+        });
         console.log("INSERT");
         db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM LOGS', [], function (_, results) {
-               const len = results.rows.length;        
-               for (let i = 0; i < len; i++){
-                  console.log(results.rows.item(i));
-               }
-             
+                const len = results.rows.length;
+                for (let i = 0; i < len; i++) {
+                    console.log(results.rows.item(i));
+                }
+
             }, null);
-         });
+        });
     }
 
     return (
         <div className={classes.root}>
             <ActivitySelector description={description} tag={tag} setDescription={setDescription} setTag={setTag} />
             <button class='iconBut'>
-            <IconButton aria-label="start" onClick={handleClick}>
-                {iconStyle(status)}
-            </IconButton>
+                <IconButton aria-label="start" onClick={handleClick}>
+                    {iconStyle(status)}
+                </IconButton>
             </button>
             <TimerDisplay status={status} timer={timer} />
         </div>

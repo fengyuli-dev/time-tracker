@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const db = openDatabase('TimeTracker', '1.0', 'main database', 2 * 1024 * 1024);
+const db = openDatabase('TimeTracker', '1.0', 'main database', 1024 * 1024 * 1024);
 
 const useStyles = makeStyles({
     table: {
@@ -23,7 +23,7 @@ export default function Report() {
     useEffect(() => {
         setRows([]);
         db.transaction(function (tx) {
-            tx.executeSql('SELECT * FROM LOGS', [], function (_, results) {
+            tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
                 const len = results.rows.length;
                 for (let i = len - 1; i >= len - 30 && i >= 0; i--) {
                     setRows(oldRows => [...oldRows, results.rows.item(i)])

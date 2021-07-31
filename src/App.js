@@ -6,6 +6,13 @@ import { Switch, Route } from "react-router-dom";
 import InteractiveList from './components/activityList';
 import Report from './components/report';
 
+const db = openDatabase('TimeTracker', '1.0', 'main database', 1024 * 1024 * 1024);
+
+db.transaction(function (tx) {
+  tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (description, tag, date, startTime, endTime, duration)', []);
+  tx.executeSql('CREATE TABLE IF NOT EXISTS ACTIVITIES (name)', []);
+});
+
 function App() {
 
   return (
