@@ -101,7 +101,7 @@ export default function InteractiveList() {
                     })}
                 </List>
             </div>
-            <form className={classes.root} noValidate autoComplete="off" onSubmit={addActivity}>
+            <form className="AddFeat" noValidate autoComplete="off" onSubmit={addActivity}>
                 <TextField id="standard-basic" label="New Item" value={newItem} onChange={handleTextChange} />
                 <IconButton type="submit" class="AddButton" aria-label="add">
                     <AddIcon />

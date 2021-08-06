@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import './report.css';
 
 const db = openDatabase('TimeTracker', '1.0', 'main database', 1024 * 1024 * 1024);
 
@@ -34,11 +35,11 @@ export default function Report() {
 
     return (
         <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
+            <Table className="ReportTable" aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <TableCell>Date</TableCell>
-                        <TableCell align="right">Discription</TableCell>
+                        <TableCell align="right">Description</TableCell>
                         <TableCell align="right">Tag</TableCell>
                         <TableCell align="right">Start</TableCell>
                         <TableCell align="right">End</TableCell>

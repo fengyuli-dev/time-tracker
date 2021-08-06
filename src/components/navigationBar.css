@@ -1,8 +1,7 @@
 .MuiBottomNavigation-root {
-    position: fixed;
-    left: 50%;
-    top: 95%;
-    transform: translate(-50%, -95%);
-    margin: 0 auto;
-  }
-  
+  position: fixed;
+  left: 50%;
+  top: 98%;
+  transform: translate(-50%, -95%);
+  margin: 0 auto;
+}
